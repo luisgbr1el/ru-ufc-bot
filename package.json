@@ -1,7 +1,7 @@
 {
-  "name": "kelle-telegram",
-  "version": "1.2.0",
-  "description": "Um simples bot para o Telegram que baixa vídeos e áudios do TikTok, clipes da Twitch & outras funcionalidades.",
+  "name": "ru-ufc-bot",
+  "version": "1.0.0",
+  "description": "Um simples bot para o Telegram que checa o saldo do cartão do Restaurante Universitário da Universidade Federal do Ceará.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
