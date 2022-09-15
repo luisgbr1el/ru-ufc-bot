@@ -34,7 +34,6 @@ mongoose.connect(
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
   }
 );
 
@@ -98,8 +97,8 @@ scene.enter(async (ctx) => {
           await ctx.answerCbQuery("Vinculando...");
 
           let usersData = await userSchema.find({
-            UserId: userInfo[0],
-          });       
+            UserId: userInfo[0]
+          }).exec();
 
           if (usersData != '') {
              let updateData = await userSchema.findOneAndUpdate(
@@ -113,12 +112,12 @@ scene.enter(async (ctx) => {
               returnOriginal: false
             });
           } else {
-          let newData = new userSchema({
+          await userSchema.create({
             UserId: userInfo[0],
             CardNumber: userInfo[1],
             Matricula: userInfo[2]
           })
-          newData.save();
+          //newData.save();
         }
 
             await ctx.deleteMessage(messageId);
