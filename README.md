@@ -1,4 +1,4 @@
-# Saldo RU UFC Telegram
+# RU UFC Telegram Bot
 
 
 [![GitHub issues](https://img.shields.io/github/issues/luisgbr1el/kelle-telegram?style=flat-square)](https://github.com/luisgbr1el/saldo-ru-ufc-telegram/issues)
