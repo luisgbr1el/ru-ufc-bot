@@ -167,154 +167,9 @@ bot.command("/saldo", async (ctx) => {
   }
 });
 
-bot.command("/cardapio", async (ctx) => {
-  sceneCardapio.enter(async (ctx) => {
-    ctx
-      .replyWithMarkdown(
-        `Qual cardápio você deseja checar?`,
-        Markup.inlineKeyboard([
-          Markup.button.callback("De hoje", "today"),
-          Markup.button.callback("Da semana", "week"),
-        ])
-      )
-      .then(({ message_id }) => {
-        messageId = message_id;
-      });
-  });
-  //await ctx.scene.enter("cardapio");
-  //sceneCardapio.action("today", async (ctx) => {
-  //await ctx.answerCbQuery("Carregando cardápio de hoje...");
-
-  var d = new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" });
-  d = new Date(d);
-  d = d.getDay();
-
-  if (d == 6 || d == 0 || d == 1) day = "segunda";
-  else if (d == 2) day = "terca";
-  else if (d == 3) day = "quarta";
-  else if (d == 4) day = "quinta";
-  else if (d == 5) day = "sexta";
-
-  sceneCardapioChoose.enter(async (ctx) => {
-    //await ctx.deleteMessage(messageId);
-    ctx
-      .replyWithMarkdown(
-        `Você deseja checar o cardápio referente à qual refeição?`,
-        Markup.inlineKeyboard([
-          Markup.button.callback("Almoço", "almoco"),
-          Markup.button.callback("Jantar", "jantar"),
-        ])
-      )
-      .then(({ message_id }) => {
-        messageId = message_id;
-      });
-  });
-  await ctx.scene.enter("cardapioChoose");
-
-  sceneCardapioChoose.action("almoco", async (ctx) => {
-    cardapioRU.cardapio().then(async (res) => {
-      let headerDay;
-
-      if (day == "segunda") headerDay = res.cardapio.semana[0];
-      if (day == "terca") headerDay = res.cardapio.semana[1];
-      if (day == "quarta") headerDay = res.cardapio.semana[2];
-      if (day == "quinta") headerDay = res.cardapio.semana[3];
-      if (day == "sexta") headerDay = res.cardapio.semana[4];
-
-      await ctx.answerCbQuery("Carregando cardápio do almoço de hoje...");
-      await ctx.deleteMessage(messageId);
-
-      header =
-        "Cardápio almoço " +
-        headerDay +
-        "\n\n(*) Contém Leite/Lactose\n(**) Contém Glúten";
-      principal = "[Principal]\n" + res.cardapio.almoco[day].principal;
-      vegetariano = "[Vegetariano]\n" + res.cardapio.almoco[day].vegetariano;
-      salada = "[Salada]\n" + res.cardapio.almoco[day].salada;
-      guarnicao = "[Guarnição]\n" + res.cardapio.almoco[day].guarnicao;
-      acompanhamento =
-        "[Acompanhamento]\n" + res.cardapio.almoco[day].acompanhamento;
-      suco = "[Suco]\n" + res.cardapio.almoco[day].suco;
-      sobremesa = "[Sobremesa]\n" + res.cardapio.almoco[day].sobremesa;
-
-      await ctx.reply(
-        header +
-          "\n\n" +
-          principal +
-          "\n\n" +
-          vegetariano +
-          "\n\n" +
-          salada +
-          "\n\n" +
-          guarnicao +
-          "\n\n" +
-          acompanhamento +
-          "\n\n" +
-          suco +
-          "\n\n" +
-          sobremesa
-      );
-    });
-  });
-
-  sceneCardapioChoose.action("jantar", async (ctx) => {
-    cardapioRU.cardapio().then(async (res) => {
-      let headerDay;
-
-      if (day == "segunda") headerDay = res.cardapio.semana[0];
-      if (day == "terca") headerDay = res.cardapio.semana[1];
-      if (day == "quarta") headerDay = res.cardapio.semana[2];
-      if (day == "quinta") headerDay = res.cardapio.semana[3];
-      if (day == "sexta") headerDay = res.cardapio.semana[4];
-
-      await ctx.answerCbQuery("Carregando cardápio do jantar de hoje...");
-      await ctx.deleteMessage(messageId);
-
-      header =
-        "Cardápio jantar " +
-        headerDay +
-        "\n\n(*) Contém Leite/Lactose\n(**) Contém Glúten";
-      principal = "[Principal]\n" + res.cardapio.jantar[day].principal;
-      vegetariano = "[Vegetariano]\n" + res.cardapio.jantar[day].vegetariano;
-      salada = "[Salada]\n" + res.cardapio.jantar[day].salada;
-      guarnicao = "[Guarnição]\n" + res.cardapio.jantar[day].guarnicao;
-      acompanhamento =
-        "[Acompanhamento]\n" + res.cardapio.jantar[day].acompanhamento;
-      suco = "[Suco]\n" + res.cardapio.jantar[day].suco;
-      sobremesa = "[Sobremesa]\n" + res.cardapio.jantar[day].sobremesa;
-
-      await ctx.reply(
-        header +
-          "\n\n" +
-          principal +
-          "\n\n" +
-          vegetariano +
-          "\n\n" +
-          salada +
-          "\n\n" +
-          guarnicao +
-          "\n\n" +
-          acompanhamento +
-          "\n\n" +
-          suco +
-          "\n\n" +
-          sobremesa
-      );
-    });
-  });
-  //});
-
-  //sceneCardapio.action("week", async (ctx) => {
-
-  //await ctx.answerCbQuery("Vínculo cancelado!");
-  //await ctx.deleteMessage(messageId);
-  // await ctx.replyWithMarkdown(`*❌ Vínculo cancelado pelo usuário.*`);
-  //});
-});
-
 bot.start((ctx) =>
   ctx.replyWithMarkdown(
-    `🤖 Olá! Eu posso consultar o seu saldo do *cartão do RU* da *Universidade Federal do Ceará*, que utiliza o sistema *SIPAC* e também posso checar o cardápio para você.
+    `🤖 Olá! Eu posso consultar o seu saldo do *cartão do RU* da *Universidade Federal do Ceará*, que utiliza o sistema *SIPAC*.
 Para iniciar a configuração, digite */vincular* e vincule o seu cartão.
 
 *Obs: O bot não possui nenhum vínculo com a Universidade Federal do Ceará.*`
@@ -327,7 +182,6 @@ bot.help((ctx) => {
 
 */vincular* - Vincular cartão e matrícula à sua conta do *Telegram*.
 */saldo* - Consultar o saldo do seu cartão.
-*/cardapio* - Checar o cardápio do RU.
 
 Fui desenvolvido por @luisgbr1el.
   
