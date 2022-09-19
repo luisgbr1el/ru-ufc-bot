@@ -6,7 +6,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/luisgbr1el/kelle-telegram?style=flat-square)](https://github.com/luisgbr1el/saldo-ru-ufc-telegram/stargazers)
 [![GitHub license](https://img.shields.io/github/license/luisgbr1el/kelle-telegram?style=flat-square)](https://github.com/luisgbr1el/saldo-ru-ufc-telegram/blob/main/LICENSE)
 
-Um simples bot para o Telegram que checa o saldo do cartão e cardápio do Restaurante Universitário da Universidade Federal do Ceará.
+Um simples bot para o Telegram que checa o saldo do cartão do Restaurante Universitário da Universidade Federal do Ceará.
 
 [Clique aqui](https://t.me/SaldoRuUFCBot) para utilizá-lo.
 
