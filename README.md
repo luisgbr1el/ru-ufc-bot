@@ -18,11 +18,11 @@ Um simples bot para o Telegram que checa o saldo do cartão e cardápio do Resta
 |`/saldo`|Consultar seu saldo do cartão.|
 
 # Compilar
-Para compilar o bot em seu PC, comece **baixando** ou **clonando** [esse repositório](https://github.com/luisgbr1el/saldo-ru-ufc-telegram).
+Para compilar o bot em seu PC, comece **baixando** ou **clonando** [esse repositório](https://github.com/luisgbr1el/ru-ufc-bot).
 ### 1. Clonando repositório
 Para clonar esse repositório utilizando o **Git**, digite em seu console:
 ```
-git clone https://github.com/luisgbr1el/saldo-ru-ufc-telegram.git
+git clone https://github.com/luisgbr1el/ru-ufc-bot.git
 ```
 
 ### 2. Instalando packages
