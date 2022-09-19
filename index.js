@@ -155,10 +155,14 @@ bot.command("/saldo", async (ctx) => {
           letter.toUpperCase()
         );
 
-        ctx.replyWithMarkdown(`*💳 Informações do cartão*
-
+        ctx.replyWithMarkdown(`*💳 - Informações do cartão*
 *Titular:* ${finalName}
-*Créditos:* ${res.creditos}`);
+*Créditos:* ${res.creditos}
+
+*⏮ - Última operação*
+*Data:* ${res.ultimaOperacao.data}
+*Tipo:* ${res.ultimaOperacao.tipo}
+*Detalhes:* ${res.ultimaOperacao.detalhes}`);
       });
   } else {
     ctx.replyWithMarkdown(
