@@ -45,6 +45,7 @@ bot.use(stage.middleware());
 
 let stopListen;
 let messageId;
+
 bot.command("/vincular", async (ctx) => {
   stopListen = false;
 
