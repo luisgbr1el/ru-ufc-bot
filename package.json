@@ -13,7 +13,7 @@
   "author": "luisgbr1el",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^0.28.0",
     "cardapio-ru-ufc-crateus": "^1.0.1",
     "express": "^4.17.3",
     "mongoose": "^6.12.7",
