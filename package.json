@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.28.0",
     "cardapio-ru-ufc-crateus": "^1.0.1",
-    "express": "^4.17.3",
+    "express": "^4.21.1",
     "mongoose": "^6.12.7",
     "path": "^0.12.7",
     "saldo-ru-ufc": "^1.1.0",
