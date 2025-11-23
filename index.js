@@ -6,7 +6,8 @@ Copyright (c) 2022 Luis Gabriel Araújo
 
 const express = require("express"); // App
 const saldoRU = require("saldo-ru-ufc");
-const cardapioRU = require("cardapio-ru-ufc-crateus");
+const dotenv = require('dotenv')
+dotenv.config();
 
 // App Configs
 const app = express();
@@ -18,7 +19,7 @@ app.listen(port, () =>
 
 // Telegraf Modules
 const { Markup, Scenes, session, Telegraf } = require("telegraf");
-const token = process.env["token"];
+const token = process.env.TOKEN;
 const bot = new Telegraf(token);
 const sceneVincular = new Scenes.BaseScene("vinculaCartao");
 const sceneCardapio = new Scenes.BaseScene("cardapio");
@@ -33,7 +34,7 @@ const stage = new Scenes.Stage([
 const mongoose = require("mongoose");
 const userSchema = require("./schemas/user");
 const https = require("https");
-const mongoServer = process.env["mongoServer"];
+const mongoServer = process.env.MONGO_SERVER;
 
 mongoose.connect(mongoServer, {
   useNewUrlParser: true,
