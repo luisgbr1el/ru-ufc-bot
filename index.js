@@ -9,14 +9,6 @@ const saldoRU = require("saldo-ru-ufc");
 const dotenv = require('dotenv')
 dotenv.config();
 
-// App Configs
-// const app = express();
-// const port = 3000;
-// app.get("/", (req, res) => res.send("<h1>Hello World!</h1>"));
-// app.listen(port, () =>
-//   console.log(`Example app listening at http://localhost:${port}`)
-// );
-
 // Telegraf Modules
 const { Markup, Scenes, session, Telegraf } = require("telegraf");
 const token = process.env.TOKEN;
@@ -44,7 +36,7 @@ bot.use(stage.middleware());
 let stopListen;
 let messageId;
 
-bot.command("/vincular", async (ctx) => {
+bot.command("vincular", async (ctx) => {
   stopListen = false;
 
   ctx.replyWithMarkdown(`Certo, agora vincularemos o cartão e matrícula à sua conta do *Telegram*. Para isso, siga os passos abaixo:
@@ -90,7 +82,6 @@ bot.command("/vincular", async (ctx) => {
       await ctx.scene.enter("vinculaCartao");
 
       sceneVincular.action("sim", async (ctx) => {
-        // If Video In Cache, Send Quickly
 
         await ctx.answerCbQuery("Vinculando...");
 
@@ -138,8 +129,8 @@ bot.command("/vincular", async (ctx) => {
   });
 });
 
-bot.command("/saldo", async (ctx) => {
-  messageUserId = ctx.message.from.id;
+bot.command("saldo", async (ctx) => {
+  let messageUserId = ctx.message.from.id;
 
   let usersData = await userSchema.find({
     UserId: messageUserId,
