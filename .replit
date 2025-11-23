@@ -73,3 +73,6 @@ support = true
       sourceMaps = true
       stopOnEntry = false
       type = "pwa-node"
+
+[agent]
+expertMode = true
