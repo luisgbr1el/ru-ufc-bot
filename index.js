@@ -36,10 +36,7 @@ const userSchema = require("./schemas/user");
 const https = require("https");
 const mongoServer = process.env.MONGO_SERVER;
 
-mongoose.connect(mongoServer, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(mongoServer);
 
 bot.use(session());
 bot.use(stage.middleware());
