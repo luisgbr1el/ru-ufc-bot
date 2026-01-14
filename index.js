@@ -36,7 +36,7 @@ bot.use(stage.middleware());
 let stopListen;
 let messageId;
 
-bot.command("vincular", async (ctx) => {
+const handleVincular = async (ctx) => {
   stopListen = false;
 
   ctx.replyWithMarkdown(`Certo, agora vincularemos o cartão e matrícula à sua conta do *Telegram*. Para isso, siga os passos abaixo:
@@ -127,9 +127,12 @@ bot.command("vincular", async (ctx) => {
     }
     stopListen = true;
   });
-});
+};
 
-bot.command("saldo", async (ctx) => {
+bot.command("vincular", handleVincular);
+bot.hears("⚙️ Vincular cartão", handleVincular);
+
+const handleSaldo = async (ctx) => {
   let messageUserId = ctx.message.from.id;
 
   let usersData = await userSchema.find({
@@ -159,18 +162,27 @@ bot.command("saldo", async (ctx) => {
       `❌ Parece que você ainda não vinculou nenhum cartão à sua conta. Para vincular, digite */vincular*.`
     );
   }
-});
+};
+
+bot.command("saldo", handleSaldo);
+bot.hears("💰 Consultar saldo", handleSaldo);
 
 bot.start((ctx) =>
   ctx.replyWithMarkdown(
     `🤖 Olá! Eu posso consultar o seu saldo do *cartão do RU* da *Universidade Federal do Ceará*, que utiliza o sistema *SIPAC*.
 Para iniciar a configuração, digite */vincular* e vincule o seu cartão.
 
-*Obs: O bot não possui nenhum vínculo com a Universidade Federal do Ceará.*`
+*Obs: O bot não possui nenhum vínculo com a Universidade Federal do Ceará.*`,
+    Markup.keyboard([
+      ['💰 Consultar saldo'],
+      ['❓ Ajuda', '⚙️ Vincular cartão']
+    ])
+      .resize()
+      .persistent()
   )
 );
 
-bot.help((ctx) => {
+const handleHelp = (ctx) => {
   ctx.replyWithMarkdown(
     `*📃 Os comandos disponíveis são:*
 
@@ -181,7 +193,10 @@ Fui desenvolvido por @luisgbr1el.
   
 *Versão 1.1.0*`
   );
-});
+};
+
+bot.help(handleHelp);
+bot.hears("❓ Ajuda", handleHelp);
 
 bot.launch();
 
